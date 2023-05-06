@@ -1,22 +1,20 @@
 // stuff that im importing
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
+const webpage = require('./Develop/routes/webpageRoutes')
+const api = require('./Develop/routes/apiRoutes')
 // helper objects
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 //middleware for the server
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
-// routes that will manage get and post request
-app.get('/', (req, res) => {
-    res.sendFile('public/index.html', { root: __dirname + '/Develop' });
-  });
-  app.get('/notes',(req, res) => {
-    res.sendFile('public/notes.html', { root: __dirname + '/Develop' })
-});
-  
+app.use(webpage)
+app.use(api)
+
+
+
+
 
 // will start the servers
 app.listen(PORT, () =>
