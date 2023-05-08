@@ -1,7 +1,7 @@
 const webpage = require('express').Router();
 const path = require('path');
 
-// routes that will manage get and post request
+// Routes that will manage get and post request
 webpage.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
